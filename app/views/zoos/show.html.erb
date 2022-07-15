@@ -1,0 +1,13 @@
+zoo#show
+
+<%= @zoo.each do |zoo| %>
+  <% if zoo.image.attached? %>
+    <%= image_tag zoo.image, size: "200x200" %>
+  <% else %>
+    <%= image_tag 'noimage', size: "200x200" %>
+  <% end %>
+<% end %>
+
+<% @zoo.zoo_animals.each do |zoo_animal| %>
+  <%= @zoo.name %>
+<% end %>

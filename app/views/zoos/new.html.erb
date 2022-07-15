@@ -1,0 +1,33 @@
+zoo#new
+
+<%= form_with model: @zoo, url: zoos_path, method: :post do |f| %>
+
+  <div class="field">
+    <%= f.label :image %>
+    <%= f.file_field :image, accept: "image/*" %>
+  </div>
+  
+  <div class="field">
+    <%= f.label :動物園名 %>
+    <%= f.text_field :name %>
+  </div>
+  
+  <div class="field">
+    <%= f.label :推しの動物 %>
+    <%= f.text_field :animal_id %>
+  </div>
+  <div class="field">
+    <%= f.label :いる動物 %>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :場所 %>
+    <%= f.text_field :address %>
+  </div>
+  <div class="field">
+    <%= f.label :五段階評価 %>
+    <%= f.text_field :assessment %>
+  </div>
+
+  <%= f.submit "新規登録" %>
+<% end %>

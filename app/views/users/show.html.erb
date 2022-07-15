@@ -1,0 +1,38 @@
+<h1>Users#show</h1>
+
+<h2>
+  <%= @user.name %>さんのページ
+</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>動物園名</th>
+      <th>推し動物</th>
+      <th>訪れた日付</th>
+      <th>五段階評価</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <%= @zoo.each do |zoo| %>
+      <tr>
+        <td><%= zoo.name %></td>
+        <td><%= zoo.favorite %></td>
+        <td><%= zoo.created_at %></td>
+        <td><%= zoo.assessment %></td>
+        <td>
+          <%= link_to zoo_path(zoo) do %>
+            詳細
+          <% end %>
+        </td>
+        <td>
+          <%= link_to edit_zoo_path(zoo) do %>
+            編集
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
