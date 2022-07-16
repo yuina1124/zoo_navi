@@ -1,12 +1,39 @@
 zoo#index
 
-<% @animal_list.each do |list| %>
-  <%= list.name %>
-  <%= "(#{list.zoos.count})" %>
-<% end %>
 
-<% @zoos.each do |zoo| %>
-  <i class="fas fa-animal">
-    <%= zoo.animal.map(&:name).join(',') %>
-  </i>
-<% end %>
+<%# @zoos.each do |zoo| %>
+  <!--<i class="fas fa-animal">-->
+    <%#= zoo.animal.map(&:name).join(',') %>
+  <!--</i>-->
+<%# end %>
+
+<h2>動物園一覧</h2>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>動物園名</th>
+      <th>人気動物</th>
+      <th>何種類</th>
+      <th>主な動物</th>
+      <th>五段階評価</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @zoos.each do |zoo| %>
+    <tr>
+      <td><%= zoo.name %></td>
+      <td><%= zoo.favorite %></td>
+      <td><%= zoo.animals.count %></td>
+      <td><%= zoo.animals.name %></td>
+      <td><%= zoo.assessment %></td>
+      <td>
+        <%= link_to zoo_path(zoo) do %>
+          もっと詳しく
+        <% end %>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>

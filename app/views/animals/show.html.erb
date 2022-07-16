@@ -1,9 +1,29 @@
 animal#show
 
-<%= @animal.each do |zoo| %>
-  <% if animal.image.attached? %>
-    <%= image_tag zoo.image, size: "200x200" %>
-  <% else %>
-    <%= image_tag 'noimage', size: "200x200" %>
-  <% end %>
+<h2><%= @animal.name %></h2>
+
+<% if @animal.image.attached? %>
+  <%= image_tag @animal.image, size: "200x200" %>
+<% else %>
+  <%= image_tag 'noimage', size: "200x200" %>
 <% end %>
+
+<table>
+  <thead>
+    <tr>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>詳細</td>
+      <td><%= @animal.introduction %></td>
+    </tr>
+    <tr>
+      <td>いる動物園</td>
+      <td><%#= @animal.zoo.name %></td>
+    </tr>
+  </tbody>
+</table>
+

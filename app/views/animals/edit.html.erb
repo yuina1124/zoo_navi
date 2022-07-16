@@ -1,7 +1,35 @@
 animal#edit
 
+<%= form_with model: @animal, url:animal_path(@animal), method: :patch do |f| %>
 
   <div class="field">
-    <%= f.label :いる動物 %>
-    <%= f.collection_check_box :name %>
+    <%= f.label :image %>
+    <%= f.file_field :image, accept: "image/*" %>
   </div>
+
+  <table>
+  <thead>
+    <tr>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>名前</td>
+      <td><%= f.text_field :name %></td>
+    </tr>
+    <tr>
+      <td>詳細</td>
+      <td><%= f.text_field :introduction %></td>
+    </tr>
+    <tr>
+      <td>いる動物園</td>
+      <td><%#= f.text_field :@animal.zoo.name %></td>
+    </tr>
+  </tbody>
+</table>
+
+<%= f.submit "編集" %>
+
+<% end %>
