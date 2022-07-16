@@ -14,9 +14,14 @@ zoo#new
 
   <div class="field">
     <%= f.label :推しの動物 %>
-    <%#= f.text_field :animal_id %>
+    <%= f.text_field :favorite %>
   </div>
-  
+
+  <div class="field">
+    <%= f.label :いる動物 %>
+    <%= f.text_field :animals %>
+  </div>
+
   <div class="field">
     <%= f.label :場所 %>
     <%= f.text_field :address %>
@@ -24,6 +29,10 @@ zoo#new
   <div class="field">
     <%= f.label :五段階評価 %>
     <%= f.text_field :assessment %>
+  </div>
+  <div class="field">
+    <%= f.label :五段階評価 %>
+    <%= f.text_field :zoo_type %>
   </div>
 
   <%= f.submit "新規登録" %>

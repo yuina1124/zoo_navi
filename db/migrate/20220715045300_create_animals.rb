@@ -3,8 +3,8 @@ class CreateAnimals < ActiveRecord::Migration[6.1]
     create_table :animals do |t|
 
       t.string :name, null: false
-      t.string :introduction, null: false
-      t.integer :zoo_id, null: false
+      t.string :introduction
+      t.integer :user_id, null: false
 
       t.timestamps
     end

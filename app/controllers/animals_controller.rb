@@ -15,7 +15,6 @@ class AnimalsController < ApplicationController
   end
 
   def show
-    @animal = Animal.find(params[:id])
   end
 
   private

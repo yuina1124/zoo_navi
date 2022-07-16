@@ -1,17 +1,17 @@
 class ZoosController < ApplicationController
 
   def new
-    @zoo = Zoo.new(zoo_params)
+    @zoo = Zoo.new
     @zoo.zoo_animals.build
   end
 
   def create
     @zoo = Zoo.new(zoo_params)
     @zoo.user_id = current_user.id
-    animal_list = params[:zoo][:name].split(',')
+    animal_list = params[:zoo][:animals].split(',')
     if @zoo.save
       @zoo.save_animal(animal_list)
-      redirect_to user_path
+      redirect_to user_path(current_user.id)
     else
       render new
     end
@@ -51,7 +51,7 @@ class ZoosController < ApplicationController
   private
 
   def zoo_params
-    params.permit(:name, :favorite, :type, :assessment, :address, :image, :zoo, { :animal_ids => []})
+    params.require(:zoo).permit(:name, :favorite, :zoo_type, :assessment, :address, :image, { :animal_ids => []})
   end
 
 end

@@ -7,7 +7,7 @@ class Zoo < ApplicationRecord
   has_one_attached :image
 
   def save_animal(sent_animals)
-    current_animals = self.animals.pluck(:name) unless self.animal.nil?
+    current_animals = self.animals.pluck(:name) unless self.animals.nil?
     old_animals = current_animals - sent_animals
     new_animals = sent_animals - current_animals
 

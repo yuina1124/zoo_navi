@@ -42,8 +42,8 @@ ActiveRecord::Schema.define(version: 2022_07_15_055055) do
 
   create_table "animals", force: :cascade do |t|
     t.string "name", null: false
-    t.string "introduction", null: false
-    t.integer "zoo_id", null: false
+    t.string "introduction"
+    t.integer "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -73,11 +73,10 @@ ActiveRecord::Schema.define(version: 2022_07_15_055055) do
   create_table "zoos", force: :cascade do |t|
     t.string "name", null: false
     t.string "favorite", null: false
-    t.string "type", null: false
+    t.string "zoo_type", null: false
     t.string "assessment", null: false
     t.string "address", null: false
     t.integer "user_id", null: false
-    t.integer "animal_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

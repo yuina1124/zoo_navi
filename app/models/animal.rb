@@ -2,6 +2,7 @@ class Animal < ApplicationRecord
 
   has_many :zoo_animals, dependent: :destroy, foreign_key: 'animal_id'
   has_many :zoo, through: :zoo_animals
+  belongs_to :user
 
   validates :name, uniqueness: true, presence: true
 
