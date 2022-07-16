@@ -1,1 +1,12 @@
 zoo#index
+
+<% @animal_list.each do |list| %>
+  <%= list.name %>
+  <%= "(#{list.zoos.count})" %>
+<% end %>
+
+<% @zoos.each do |zoo| %>
+  <i class="fas fa-animal">
+    <%= zoo.animal.map(&:name).join(',') %>
+  </i>
+<% end %>

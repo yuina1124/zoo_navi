@@ -41,6 +41,9 @@ ActiveRecord::Schema.define(version: 2022_07_15_055055) do
   end
 
   create_table "animals", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "introduction", null: false
+    t.integer "zoo_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -64,6 +67,7 @@ ActiveRecord::Schema.define(version: 2022_07_15_055055) do
     t.integer "animal_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["zoo_id", "animal_id"], name: "index_zoo_animals_on_zoo_id_and_animal_id", unique: true
   end
 
   create_table "zoos", force: :cascade do |t|
@@ -72,6 +76,8 @@ ActiveRecord::Schema.define(version: 2022_07_15_055055) do
     t.string "type", null: false
     t.string "assessment", null: false
     t.string "address", null: false
+    t.integer "user_id", null: false
+    t.integer "animal_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

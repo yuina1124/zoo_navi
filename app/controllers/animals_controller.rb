@@ -1,11 +1,12 @@
 class AnimalsController < ApplicationController
 
   def new
-    @animal = Animal.all
+    @animal = Animal.new
+    @animal.zoo_animals.build
   end
 
   def create
-    @animal =Animal.all
+    @animal =Animal.new
     @animal.save
     redirect_to user_path(current_user)
   end
@@ -17,4 +18,9 @@ class AnimalsController < ApplicationController
     @animal = Animal.find(params[:id])
   end
 
+  private
+
+  def animal_params
+    params.require(:animal).permit(:name, :image, :animal, {:zoo_ids => []})
+  end
 end

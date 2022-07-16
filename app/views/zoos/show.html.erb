@@ -11,3 +11,8 @@ zoo#show
 <% @zoo.zoo_animals.each do |zoo_animal| %>
   <%= @zoo.name %>
 <% end %>
+
+<% @zoo_animals.each do |animal| %>
+  <%= animal.name %>
+  <%="#{animal.zoos.count})" %>
+<% end %>

@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   def show
     @user = current_user
-    @zoo = Zoo.find(params[:id])
+    @zoo = @user.zoos
   end
 
   def edit

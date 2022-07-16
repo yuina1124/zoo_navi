@@ -5,10 +5,8 @@ class CreateZooAnimals < ActiveRecord::Migration[6.1]
       t.integer :zoo_id
       t.integer :animal_id
 
-      t.references :zoo, foreign_key: true
-      t.references :animal, foreign_key: true
-
       t.timestamps null: false
     end
+    add_index :zoo_animals, [:zoo_id, :animal_id], unique: true
   end
 end

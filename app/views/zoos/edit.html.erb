@@ -1,1 +1,14 @@
 zoo#edit
+
+<%= form_with model @zoo url:zoo_path(@zoo) method: :patch do |f| %>
+
+  <div class="field">
+    <%= f.label :いる動物 %>
+    <%= f.collection_check_boxes :animal_ids, Animal.all, :id, :name %>
+    <%= f.label"動物を新しく追加（,で区切ると複数タグ登録できます)" %>
+    <%= f.taxt_field :name, value: @animal_list, class:"form-control" %>
+  </div>
+
+  <%= f.submit "編集" %>
+
+<% end %>
