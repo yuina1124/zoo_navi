@@ -2,6 +2,7 @@ class ZoosController < ApplicationController
 
   def new
     @zoo = Zoo.new
+    @animal_list = @zoo.animals.pluck(:name).join(',')
     @zoo.zoo_animals.build
   end
 
@@ -9,8 +10,9 @@ class ZoosController < ApplicationController
     @zoo = Zoo.new(zoo_params)
     @zoo.user_id = current_user.id
     animal_list = params[:zoo][:animals].split(',')
-    if @zoo.save
-      @zoo.save_animal(animal_list)
+    if @zoo.save!
+      @zoo.save_animal(animal_list, params[:zoo][:animal_ids], current_user)
+      # @zoo.save_animal_chackbox(params[:zoo][:animal_ids])
       redirect_to user_path(current_user.id)
     else
       render new
@@ -19,8 +21,6 @@ class ZoosController < ApplicationController
 
   def show
     @zoo = Zoo.find(params[:id])
-    @zoo_animal = ZooAnimal.new
-    @zoo_animals = @zoo.animals
   end
 
   def edit
@@ -30,16 +30,16 @@ class ZoosController < ApplicationController
 
   def update
     @zoo = Zoo.find(params[:id])
-    animal_list = params[:zoo][:name].split(',')
-    if @zoo.update
-      @old_relations = ZooAnimal.where(zoo_id: @zoo.id)
-      @old_relations.each do |relation|
-        relation.delete
-      end
-      @zoo.save_animal(animal_list)
+    animal_list = params[:zoo][:animals].split(',')
+    if @zoo.update!(zoo_params)
+      # @old_relations = ZooAnimal.where(zoo_id: @zoo.id)
+      # @old_relations.each do |relation|
+      #   relation.delete
+      # end
+      @zoo.save_animal(animal_list, params[:zoo][:animal_ids], current_user)
       redirect_to user_path(current_user)
     else
-      render:edit
+      render :edit
     end
   end
 
@@ -51,7 +51,7 @@ class ZoosController < ApplicationController
   private
 
   def zoo_params
-    params.require(:zoo).permit(:name, :favorite, :zoo_type, :assessment, :address, :image, { :animal_ids => []})
+    params.require(:zoo).permit(:name, :favorite, :zoo_type, :assessment, :address, :image, :user_id, { :animal_ids => []})
   end
 
 end

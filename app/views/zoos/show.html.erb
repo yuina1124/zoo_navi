@@ -1,18 +1,64 @@
 zoo#show
 
-<%= @zoo.each do |zoo| %>
-  <% if zoo.image.attached? %>
-    <%= image_tag zoo.image, size: "200x200" %>
+
+
+
+  <h2><%= @zoo.name %></h2>
+
+  <% if @zoo.image.attached? %>
+    <%= image_tag @zoo.image, size: "200x200" %>
   <% else %>
     <%= image_tag 'noimage', size: "200x200" %>
   <% end %>
-<% end %>
 
-<% @zoo.zoo_animals.each do |zoo_animal| %>
-  <%= @zoo.name %>
-<% end %>
 
-<% @zoo_animals.each do |animal| %>
-  <%= animal.name %>
-  <%="#{animal.zoos.count})" %>
-<% end %>
+  <table>
+    <thead>
+      <tr>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>推し動物</td>
+        <td><%= @zoo.favorite %></td>
+      </tr>
+      <tr>
+        <td>いる動物（登録済み）</td>
+        <td>
+          <%# @zoo.each do |zoo| %>
+            <%#= zoo.animals.map(&:name).join(',') %>
+          <%# end %>
+          <% @zoo.animals.each do |animal| %>
+            <p><%= animal.name %></p>
+          <% end %>
+        </td>
+      </tr>
+      <tr>
+        <td>何種類（登録済み）</td>
+        <td><%= @zoo.animals.count %></td>
+      </tr>
+      <tr>
+        <td>場所</td>
+        <td><%= @zoo.address %></td>
+      </tr>
+      <tr>
+        <td>五段階評価</td>
+        <td><%= @zoo.assessment %></td>
+      </tr>
+      <tr>
+        <td>投稿者名</td>
+        <td><%= @zoo.user.name %></td>
+      </tr>
+    </tbody>
+  </table>
+
+<%# @zoo.zoo_animals.each do |zoo_animal| %>
+
+<%# end %>
+
+<%# @zoo_animals.each do |animal| %>
+  <%#= animal.name %>
+  <%#="#{animal.zoos.count})" %>
+<%# end %>

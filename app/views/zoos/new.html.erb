@@ -18,8 +18,9 @@ zoo#new
   </div>
 
   <div class="field">
-    <%= f.label :いる動物 %>
-    <%= f.text_field :animals %>
+    <%= f.label "いる動物(,で区切ると複数の動物が追加できます)" %>
+    <%= f.collection_check_boxes :animal_ids, Animal.where(user_id: current_user.id), :id, :name %>
+    <%= f.text_field :animals, value: @animal_list %>
   </div>
 
   <div class="field">
