@@ -17,6 +17,7 @@ zoo#index
       <th>何種類</th>
       <th>主な動物</th>
       <th>五段階評価</th>
+      <th>投稿者</th>
       <th></th>
     </tr>
   </thead>
@@ -26,8 +27,13 @@ zoo#index
       <td><%= zoo.name %></td>
       <td><%= zoo.favorite %></td>
       <td><%= zoo.animals.count %></td>
-      <td><%= zoo.animals.name %></td>
+      <td>
+        <% zoo.animals.each do |animal| %>
+          <%= animal.name %>
+        <% end %>
+      </td>
       <td><%= zoo.assessment %></td>
+      <td><%= zoo.user.name %></td>
       <td>
         <%= link_to zoo_path(zoo) do %>
           もっと詳しく

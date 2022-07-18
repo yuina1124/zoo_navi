@@ -1,1 +1,14 @@
 animal#index
+
+<%= search_form_for @q do |f| %>
+  <%= f.label :name_cont %>
+  <%= f.search_field :name_cont %>
+  <%= f.submit "検索" %>
+ <% end %>
+
+ <% @animals.each do |animal| %>
+   <%= animal.name %>
+   <% animal.zoos.each do |zoo| %>
+     <%= zoo.name %>
+   <% end %>
+ <% end %>

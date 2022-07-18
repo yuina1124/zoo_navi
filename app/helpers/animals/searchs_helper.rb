@@ -1,0 +1,2 @@
+module Animals::SearchsHelper
+end

@@ -22,7 +22,7 @@
     </tr>
   </thead>
   <tbody>
-    <% @zoo.each do |zoo| %>
+    <% @zoos.each do |zoo| %>
       <tr>
         <td><%= zoo.name %></td>
         <td><%= zoo.favorite %></td>
@@ -57,10 +57,14 @@
     </tr>
   </thead>
   <tbody>
-    <% @zoo.each do |animal| %>
+    <% @animals.each do |animal| %>
       <tr>
-        <td><%= animal.animals.name %></td>
         <td><%= animal.name %></td>
+        <td>
+        <% animal.zoos.each do |zoo| %>
+          <%= zoo.name %>
+        <% end %>
+        </td>
         <td>
           <%= link_to animal_path(animal) do %>
             詳細

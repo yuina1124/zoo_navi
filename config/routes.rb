@@ -5,5 +5,6 @@ Rails.application.routes.draw do
   root to: "animals#index"
   resources :users, only: [:show, :edit, :update]
   resources :zoos, only: [:create, :new, :index, :show, :edit, :update]
-  resources :animals, only: [:create, :new, :show, :edit, :update]
+  resources :animals, only: [:create, :new, :show, :edit, :update, :index]
+
 end

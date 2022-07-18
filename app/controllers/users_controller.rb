@@ -2,8 +2,8 @@ class UsersController < ApplicationController
   
   def show
     @user = current_user
-    @zoo = @user.zoos
-    @animal = @user.animals
+    @zoos = @user.zoos
+    @animals = @user.animals
   end
 
   def edit

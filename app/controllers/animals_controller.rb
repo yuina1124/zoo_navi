@@ -13,6 +13,8 @@ class AnimalsController < ApplicationController
   end
 
   def index
+    @q = Animal.ransack(params[:q])
+    @animals = @q.result(distinct: true)
   end
 
   def show
@@ -28,6 +30,7 @@ class AnimalsController < ApplicationController
     @animal.update(animal_params)
     redirect_to user_path(current_user)
   end
+
 
   private
 
