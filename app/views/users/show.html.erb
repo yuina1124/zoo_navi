@@ -79,3 +79,28 @@
     <% end %>
   </tbody>
 </table>
+
+<h3>ユーザ情報</h3>
+<h4>
+  <%#= link_to edit_user_parh(@user) do %>
+    <!--編集する-->
+  <%# end %>
+</h4>
+  <table>
+    <thead>
+      <tr>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>名前</td>
+        <td><%= @user.name %></td>
+      </tr>
+      <tr>
+        <td>誕生日</td>
+        <td><%= @user.birthday %></td>
+      </tr>
+    </tbody>
+  </table>
