@@ -8,7 +8,7 @@ class AnimalsController < ApplicationController
   def create
     @animal = Animal.new(animal_params)
     @animal.user_id = current_user.id
-    @animal.save
+    @animal.save!
     redirect_to user_path(current_user)
   end
 

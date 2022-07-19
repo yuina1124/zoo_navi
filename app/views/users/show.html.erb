@@ -27,7 +27,7 @@
         <td><%= zoo.name %></td>
         <td><%= zoo.favorite %></td>
         <td><%= zoo.created_at.strftime('%Y/%m/%d') %></td>
-        <td><%= zoo.assessment %></td>
+        <td class="evaluations" data-score="<%= zoo.rate %>"></td>
         <td>
           <%= link_to zoo_path(zoo) do %>
             詳細
@@ -104,3 +104,15 @@
       </tr>
     </tbody>
   </table>
+
+
+<script>
+  $('.evaluations').raty({
+    readOnly: true,
+    score: function() {
+      return $(this).attr('data-score');
+    },
+    starOn: "<%= asset_path('lion.emozi.png') %>",
+    starOff: "<%= asset_path('siro.png') %>",
+  });
+</script>

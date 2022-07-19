@@ -27,9 +27,6 @@ zoo#show
       <tr>
         <td>いる動物（登録済み）</td>
         <td>
-          <%# @zoo.each do |zoo| %>
-            <%#= zoo.animals.map(&:name).join(',') %>
-          <%# end %>
           <% @zoo.animals.each do |animal| %>
             <p><%= animal.name %></p>
           <% end %>
@@ -53,12 +50,3 @@ zoo#show
       </tr>
     </tbody>
   </table>
-
-<%# @zoo.zoo_animals.each do |zoo_animal| %>
-
-<%# end %>
-
-<%# @zoo_animals.each do |animal| %>
-  <%#= animal.name %>
-  <%#="#{animal.zoos.count})" %>
-<%# end %>

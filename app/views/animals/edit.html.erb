@@ -25,7 +25,9 @@ animal#edit
     </tr>
     <tr>
       <td>いる動物園</td>
-      <td><%#= f.text_field :@animal.zoo.name %></td>
+      <td>
+        <%= f.collection_check_boxes :zoo_ids, Zoo.where(user_id: current_user.id), :id, :name %>
+      </td>
     </tr>
   </tbody>
 </table>

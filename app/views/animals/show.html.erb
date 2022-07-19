@@ -22,7 +22,11 @@ animal#show
     </tr>
     <tr>
       <td>いる動物園</td>
-      <td><%#= @animal.zoo.name %></td>
+      <td>
+        <% @animal.zoos.each do |zoo| %>
+          <%= zoo.name %><br>
+        <% end %>
+      </td>
     </tr>
   </tbody>
 </table>

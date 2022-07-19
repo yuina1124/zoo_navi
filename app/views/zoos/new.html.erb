@@ -27,14 +27,19 @@ zoo#new
     <%= f.label :場所 %>
     <%= f.text_field :address %>
   </div>
-  <div class="field">
+  <div id="rating-form">
     <%= f.label :五段階評価 %>
-    <%= f.text_field :assessment %>
-  </div>
-  <div class="field">
-    <%= f.label :五段階評価 %>
-    <%= f.text_field :zoo_type %>
+    <div id="rate">
+    <%#= f.hidden_field :rate, :value => 'score' %>
   </div>
 
   <%= f.submit "新規登録" %>
 <% end %>
+
+<script>
+  $('#rate').raty({
+    starOn: "<%= asset_path('lion.emozi.png') %>",
+    starOff: "<%= asset_path('siro.png') %>",
+    scoreName: 'zoo[rate]'
+  })
+</script>

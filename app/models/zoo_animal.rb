@@ -6,4 +6,6 @@ class ZooAnimal < ApplicationRecord
   # validates :animal_id, presence: true
   # validates :zoo_id, presence: true
 
+
+
 end

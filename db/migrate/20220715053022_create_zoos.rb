@@ -5,10 +5,12 @@ class CreateZoos < ActiveRecord::Migration[6.1]
 
       t.string :name, null: false
       t.string :favorite, null: false
-      t.string :zoo_type, null: false
+      t.string :zoo_type
       t.string :assessment, null: false
       t.string :address, null: false
       t.integer :user_id, null: false
+      t.float :rate, null: false, default: 0
+
 
 
       t.timestamps

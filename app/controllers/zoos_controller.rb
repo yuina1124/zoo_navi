@@ -51,7 +51,7 @@ class ZoosController < ApplicationController
   private
 
   def zoo_params
-    params.require(:zoo).permit(:name, :favorite, :zoo_type, :assessment, :address, :image, :user_id, { :animal_ids => []})
+    params.require(:zoo).permit(:rate, :name, :favorite, :zoo_type, :assessment, :address, :image, :user_id, { :animal_ids => []})
   end
 
 end
