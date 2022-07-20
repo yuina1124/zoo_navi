@@ -59,4 +59,4 @@ gem 'devise'
 
 gem 'ransack'
 
-#gem 'jquery-rails'
+gem 'jquery-rails'

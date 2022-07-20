@@ -1,6 +1,3 @@
-zoo#show
-
-
 
 
   <h2><%= @zoo.name %></h2>
@@ -42,7 +39,7 @@ zoo#show
       </tr>
       <tr>
         <td>五段階評価</td>
-        <td><%= @zoo.assessment %></td>
+        <td class="evaluations" data-score="<%= @zoo.rate %>"></td>
       </tr>
       <tr>
         <td>投稿者名</td>
@@ -50,3 +47,15 @@ zoo#show
       </tr>
     </tbody>
   </table>
+
+
+  <script>
+  $('.evaluations').raty({
+    readOnly: true,
+    score: function() {
+      return $(this).attr('data-score');
+    },
+    starOn: "<%= asset_path('lion.emozi.png') %>",
+    starOff: "<%= asset_path('siro.png') %>",
+  });
+</script>

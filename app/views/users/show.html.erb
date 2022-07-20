@@ -1,8 +1,9 @@
-<h1>Users#show</h1>
-
 <h2>
   <%= @user.name %>さんのページ
 </h2>
+
+<%= link_to "仮のボタンです", "#", class: "btn btn-primary" %>
+
 
 <p>
   <%= link_to new_zoo_path do %>
@@ -10,7 +11,7 @@
   <% end %>
 </p>
 
-<table>
+<table class="table table-striped">
   <thead>
     <tr>
       <th>動物園名</th>
@@ -27,6 +28,7 @@
         <td><%= zoo.name %></td>
         <td><%= zoo.favorite %></td>
         <td><%= zoo.created_at.strftime('%Y/%m/%d') %></td>
+        <td><%= zoo.rate %></td>
         <td class="evaluations" data-score="<%= zoo.rate %>"></td>
         <td>
           <%= link_to zoo_path(zoo) do %>
@@ -82,9 +84,9 @@
 
 <h3>ユーザ情報</h3>
 <h4>
-  <%#= link_to edit_user_parh(@user) do %>
-    <!--編集する-->
-  <%# end %>
+  <%= link_to edit_user_path(@user) do %>
+    編集する
+  <% end %>
 </h4>
   <table>
     <thead>

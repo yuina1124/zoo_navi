@@ -6,8 +6,10 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+    <%= stylesheet_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
 
     <% if user_signed_in? %>
       <li>
@@ -35,4 +37,14 @@
   <body>
     <%= yield %>
   </body>
+
+  <footer>
+    <%= image_tag 'キリンのフリー素材2', class: 'kirin-image'  %>
+    <%= image_tag 'ゾウのフリー素材9', class: 'zou-image'  %>
+    <%= image_tag 'カバのアイコン3', class: 'kaba-image'  %>
+    <%= image_tag '猿のフリー素材', class: 'saru-image'  %>
+    <%= image_tag 'うさぎ', class: 'usagi-image'  %>
+
+    <div class="text-right">ZOONAVI</div>
+  </footer>
 </html>

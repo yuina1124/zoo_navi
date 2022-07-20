@@ -20,7 +20,6 @@ class Zoo < ApplicationRecord
       self.animals.delete Animal.find_by(name: old, user_id: user.id)
     end
 
-    byebug
     # 新しいタグをテーブルに追加
     new_animals.each do |new|
       new_zoo_animal = Animal.find_or_create_by(name: new, user_id: user.id)
@@ -32,4 +31,6 @@ class Zoo < ApplicationRecord
       self.zoo_animals.find_or_create_by(zoo_id: self.id, animal_id: animal_id) unless animal_id.blank?
     end
   end
+
+  scope :star_count, -> {order(star: :desc)}
 end

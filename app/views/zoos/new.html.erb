@@ -1,5 +1,4 @@
-zoo#new
-
+<h2>動物園登録</h2>
 <%= form_with model: @zoo, url: zoos_path(@zoo), method: :post do |f| %>
 
   <div class="field">
@@ -30,7 +29,6 @@ zoo#new
   <div id="rating-form">
     <%= f.label :五段階評価 %>
     <div id="rate">
-    <%#= f.hidden_field :rate, :value => 'score' %>
   </div>
 
   <%= f.submit "新規登録" %>

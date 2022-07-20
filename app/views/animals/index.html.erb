@@ -19,16 +19,19 @@ animal#index
   </thead>
   <tbody>
     <% @animals.each do |animal| %>
-      <tr>
-        <td><%= animal.name %></td>
-        <td>
-          <% animal.zoos.each do |zoo| %>
-            <%= link_to zoo_path(zoo) do %>
-              <%= zoo.name %><br>
+        <tr>
+          <td><%= animal.name %></td>
+          <td>
+            <% animal.zoos.each do |zoo| %>
+              <%= link_to zoo_path(zoo) do %>
+                <%= zoo.name %><br>
+              <% end %>
             <% end %>
-          <% end %>
-        </td>
-      </tr>
+          </td>
+        </tr>
+      <% if @animals.size == 0 %>
+        登録されていません
+      <% end %>
     <% end %>
   </tbody>
 </table>
