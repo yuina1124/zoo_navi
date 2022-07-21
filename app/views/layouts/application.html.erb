@@ -6,32 +6,51 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
 
     <%= stylesheet_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
 
-    <% if user_signed_in? %>
-      <li>
-        <%= link_to "動物園一覧", zoos_path %>
-      </li>
-      <li>
-        <%= link_to "マイページ", user_path(current_user) %>
-      </li>
-      <li>
-        <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
-      </li>
-    <% else %>
-      <li>
-        <%= link_to "動物園一覧", zoos_path %>
-      </li>
-      <li>
-        <%= link_to "ユーザ登録", new_user_registration_path %>
-      </li>
-      <li>
-        <%= link_to "ログイン", new_user_session_path %>
-      </li>
-    <% end %>
+
+
+
+    <div class="container-fluid bg-warning">
+      <div class="row">
+
+        <div class="col-md-2">
+          <%= image_tag 'logo', class: 'img-fluid' %>
+        </div>
+
+        <div class="col-md-5">
+        </div>
+
+          <div class="col-md-5">
+             <% if user_signed_in? %>
+            <li>
+              <%= link_to "動物園一覧", zoos_path %>
+            </li>
+            <li>
+              <%= link_to "マイページ", user_path(current_user) %>
+            </li>
+            <li>
+              <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+            </li>
+          <% else %>
+            <li>
+              <%= link_to "動物園一覧", zoos_path %>
+            </li>
+            <li>
+              <%= link_to "ユーザ登録", new_user_registration_path %>
+            </li>
+            <li>
+              <%= link_to "ログイン", new_user_session_path %>
+            </li>
+          <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
   </head>
 
   <body>
@@ -39,12 +58,14 @@
   </body>
 
   <footer>
-    <%= image_tag 'キリンのフリー素材2', class: 'kirin-image'  %>
-    <%= image_tag 'ゾウのフリー素材9', class: 'zou-image'  %>
-    <%= image_tag 'カバのアイコン3', class: 'kaba-image'  %>
-    <%= image_tag '猿のフリー素材', class: 'saru-image'  %>
-    <%= image_tag 'うさぎ', class: 'usagi-image'  %>
+    <div class="container-fluid bg-warning">
+      <div class="row">
+        <div class="col-md-10">
+          <%= image_tag 'footer', class: 'img-fluid' %>
+        </div>
+        <div class="col-md-2">ZOONAVI</div>
+      </div>
+    </div>
 
-    <div class="text-right">ZOONAVI</div>
   </footer>
 </html>

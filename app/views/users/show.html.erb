@@ -2,11 +2,9 @@
   <%= @user.name %>さんのページ
 </h2>
 
-<%= link_to "仮のボタンです", "#", class: "btn btn-primary" %>
-
 
 <p>
-  <%= link_to new_zoo_path do %>
+  <%= link_to new_zoo_path, class: "btn btn-outline-warning btn-block" do %>
     動物園追加
   <% end %>
 </p>
@@ -31,12 +29,12 @@
         <td><%= zoo.rate %></td>
         <td class="evaluations" data-score="<%= zoo.rate %>"></td>
         <td>
-          <%= link_to zoo_path(zoo) do %>
+          <%= link_to zoo_path(zoo), class: "btn btn-outline-secondary" do %>
             詳細
           <% end %>
         </td>
         <td>
-          <%= link_to edit_zoo_path(zoo) do %>
+          <%= link_to edit_zoo_path(zoo), class: "btn btn-outline-info" do %>
             編集
           <% end %>
         </td>
@@ -45,7 +43,7 @@
   </tbody>
 </table>
 
-<%= link_to new_animal_path do %>
+<%= link_to new_animal_path, class: "btn btn-outline-warning btn-block" do %>
   動物を追加
 <% end %>
 
@@ -68,12 +66,12 @@
         <% end %>
         </td>
         <td>
-          <%= link_to animal_path(animal) do %>
+          <%= link_to animal_path(animal),class: "btn btn-outline-secondary" do %>
             詳細
           <% end %>
         </td>
         <td>
-          <%= link_to edit_animal_path(animal) do %>
+          <%= link_to edit_animal_path(animal), class: "btn btn-outline-info" do %>
             編集
           <% end %>
         </td>
@@ -84,7 +82,7 @@
 
 <h3>ユーザ情報</h3>
 <h4>
-  <%= link_to edit_user_path(@user) do %>
+  <%= link_to edit_user_path(@user), class: "btn btn-outline-info" do %>
     編集する
   <% end %>
 </h4>

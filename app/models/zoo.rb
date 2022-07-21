@@ -33,4 +33,6 @@ class Zoo < ApplicationRecord
   end
 
   scope :star_count, -> {order(star: :desc)}
+  scope :more, -> {order(type: :desc)}
+  
 end

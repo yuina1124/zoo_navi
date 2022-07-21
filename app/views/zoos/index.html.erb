@@ -1,13 +1,14 @@
 
 <h2>動物園一覧</h2>
 
-<table class="table table-hover">
-  <thead>
+<table class="table">
+  <thead class="thead-dark">
     <tr>
       <th>動物園名</th>
       <th>人気動物</th>
       <th>
         何種類
+        <%= link_to '種類の多い順', zoos_path(more: "true") %>
       </th>
       <th>主な動物</th>
       <th>
@@ -47,6 +48,7 @@
     score: function() {
       return $(this).attr('data-score');
     },
+    size: 36,
     starOn: "<%= asset_path('lion.emozi.png') %>",
     starOff: "<%= asset_path('siro.png') %>",
   });

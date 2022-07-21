@@ -46,8 +46,11 @@ class ZoosController < ApplicationController
   def index
     @zoos = Zoo.all
     @animal_list = Animal.all
-    params[:star_count]
-    @zoos = Zoo.star_count
+    if params[:star_count]
+      @zoos = Zoo.star_count
+    else params[:more]
+      @zoo = Zoo.more
+    end
   end
 
   private
