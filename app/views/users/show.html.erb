@@ -1,109 +1,128 @@
-<h2>
-  <%= @user.name %>さんのページ
-</h2>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+      <h2 class="m-5">
+        <%= @user.name %>さんの図鑑
+      </h2>
 
-
-<p>
-  <%= link_to new_zoo_path, class: "btn btn-outline-warning btn-block" do %>
-    動物園追加
-  <% end %>
-</p>
-
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th>動物園名</th>
-      <th>推し動物</th>
-      <th>訪れた日付</th>
-      <th>五段階評価</th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @zoos.each do |zoo| %>
-      <tr>
-        <td><%= zoo.name %></td>
-        <td><%= zoo.favorite %></td>
-        <td><%= zoo.created_at.strftime('%Y/%m/%d') %></td>
-        <td><%= zoo.rate %></td>
-        <td class="evaluations" data-score="<%= zoo.rate %>"></td>
-        <td>
-          <%= link_to zoo_path(zoo), class: "btn btn-outline-secondary" do %>
-            詳細
-          <% end %>
-        </td>
-        <td>
-          <%= link_to edit_zoo_path(zoo), class: "btn btn-outline-info" do %>
-            編集
-          <% end %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<%= link_to new_animal_path, class: "btn btn-outline-warning btn-block" do %>
-  動物を追加
-<% end %>
-
-<table>
-  <thead>
-    <tr>
-      <th>名前</th>
-      <th>いる動物園</th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @animals.each do |animal| %>
-      <tr>
-        <td><%= animal.name %></td>
-        <td>
-        <% animal.zoos.each do |zoo| %>
-          <%= zoo.name %>
+        <%= link_to new_zoo_path, class: "btn btn-outline-warning" do %>
+          動物園を登録する
         <% end %>
-        </td>
-        <td>
-          <%= link_to animal_path(animal),class: "btn btn-outline-secondary" do %>
-            詳細
-          <% end %>
-        </td>
-        <td>
-          <%= link_to edit_animal_path(animal), class: "btn btn-outline-info" do %>
-            編集
-          <% end %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+      </p>
 
-<h3>ユーザ情報</h3>
-<h4>
-  <%= link_to edit_user_path(@user), class: "btn btn-outline-info" do %>
-    編集する
-  <% end %>
-</h4>
-  <table>
-    <thead>
-      <tr>
-        <th></th>
-        <th></th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>名前</td>
-        <td><%= @user.name %></td>
-      </tr>
-      <tr>
-        <td>誕生日</td>
-        <td><%= @user.birthday %></td>
-      </tr>
-    </tbody>
-  </table>
+      <% if @zoos.present? %>
+      <table class="table table-striped mb-5">
+        <thead>
+          <tr>
+            <th style="width: 20%">動物園名</th>
+            <th style="width: 15%">推し動物</th>
+            <th style="width: 20%">訪れた日付</th>
+            <th style="width: 45%">五段階評価</th>
+            <th style="width: 5%"></th>
+            <th style="width: 5%"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @zoos.each do |zoo| %>
+            <tr>
+              <td><%= zoo.name %></td>
+              <td><%= zoo.favorite %></td>
+              <td><%= zoo.created_at.strftime('%Y/%m/%d') %></td>
+              <td class="evaluations" data-score="<%= zoo.rate %>"></td>
+              <td>
+                <%= link_to zoo_path(zoo), class: "btn btn-outline-secondary" do %>
+                  詳細
+                <% end %>
+              </td>
+              <td>
+                <%= link_to edit_zoo_path(zoo), class: "btn btn-outline-info" do %>
+                  <i class="fa-solid fa-pencil"></i>
+                  編集
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+      <% end %>
+
+      <%= link_to new_animal_path, class: "btn btn-outline-warning mb-5" do %>
+        動物を登録する
+      <% end %>
+
+      <% if @animals.present? %>
+      <table class="table mb-5">
+        <thead>
+          <tr>
+            <th>名前</th>
+            <th>いる動物園</th>
+            <th></th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @animals.each do |animal| %>
+            <tr>
+              <td><%= animal.name %></td>
+              <td>
+              <% animal.zoos.each do |zoo| %>
+                <%= zoo.name %>
+              <% end %>
+              </td>
+              <td>
+                <%= link_to animal_path(animal),class: "btn btn-outline-secondary" do %>
+                  詳細
+                <% end %>
+              </td>
+              <td>
+
+                <%= link_to edit_animal_path(animal), class: "btn btn-outline-info" do %>
+                  <i class="fa-solid fa-pencil"></i>
+                  編集
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+      <% end %>
+
+      <div class="form-inline">
+        <h3 class=" mx-5">ユーザ情報</h3>
+        <h4>
+          <%= link_to edit_user_path(@user), class: "btn btn-outline-info" do %>
+            <i class="fa-solid fa-pencil"></i>
+            編集する
+          <% end %>
+        </h4>
+      </div>
+
+
+        <table class="table mx-5">
+          <thead>
+            <tr>
+              <th></th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>名前</td>
+              <td><%= @user.name %></td>
+            </tr>
+            <tr>
+              <td>誕生日</td>
+              <td><%= @user.birthday %></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    <div class="col-md-2"></div>
+  </div>
+</div>
+
+
 
 
 <script>

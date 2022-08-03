@@ -1,26 +1,47 @@
-<h2>ログイン</h2>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+      <h2 class="m-5">ログイン</h2>
 
-<%= form_with model: @user, url: user_session_path do |f| %>
-  <div class="field">
-    <%= f.label :メールアドレス %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+      <table class="table">
+        <thead>
+          <tr>
+            <th></th>
+            <th></th>
+          </tr>
+        </thead>
+        <%= form_with model: @user, url: user_session_path do |f| %>
+        <tbody>
+          <tr>
+            <td><%= f.label :メールアドレス %></td>
+            <td><%= f.email_field :email, autofocus: true, autocomplete: "email" %></td>
+          </tr>
+          <tr>
+            <td><%= f.label :パスワード %></td>
+            <td><%= f.password_field :password, autocomplete: "current-password" %></td>
+          </tr>
+          <tr>
+            <td>
+              <% if devise_mapping.rememberable? %>
+            </td>
+            <td>
+              <%= f.check_box :remember_me %>
+              <%= f.label :パスワード保存 %>
+              <% end %>
+            </td>
+          </tr>
+        </tbody>
 
-  <div class="field">
-    <%= f.label :パスワード %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
+      </table>
+        <div class="text-center">
+          <button type="submit" class="btn btn-outline-warning">ログイン</button>
+        </div>
+        <% end %>
 
-  <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :パスワード保存 %>
+      <%= render "devise/shared/links" %>
     </div>
-  <% end %>
-
-  <div class="actions">
-    <%= f.submit "ログイン" %>
+    <div class="col-md-2"></div>
   </div>
-<% end %>
+</div>
 
-<%= render "devise/shared/links" %>

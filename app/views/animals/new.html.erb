@@ -1,20 +1,36 @@
-animal#new
+<div class="container">
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+      <h2 class="m-5">動物の登録</h2>
+      <%= form_with model: @animal, url: animals_path, method: :post do |f| %>
+      <table class="table mb-5">
+        <thead>
+          <tr>
+            <th></th>
+            <th></th>
+          </tr>
+        </thead>
 
-<%= form_with model: @animal, url: animals_path, method: :post do |f| %>
-  <div class="field">
-    <%= f.label :image %>
-    <%= f.file_field :image, accept: "image/*" %>
+        <tbody>
+
+          <tr>
+            <td><%= f.label :画像 %></td>
+            <td><%= f.file_field :image, accept: "image/*" %></td>
+          </tr>
+          <tr>
+            <td><%= f.label :動物名 %></td>
+            <td><%= f.text_field :name %></td>
+          </tr>
+          <tr>
+            <td><%= f.label :紹介 %></td>
+            <td><%= f.text_field :introduction %></td>
+          </tr>
+        </tbody>
+      </table>
+      <button type="submit" class="btn btn-outline-warning btn-block">新規登録</button>
+      <% end %>
+    <div class="col-md-2"></div>
   </div>
+</div>
 
-  <div class="field">
-    <%= f.label :動物名 %>
-    <%= f.text_field :name %>
-  </div>
-
-  <div class="field">
-    <%= f.label :紹介 %>
-    <%= f.text_field :introduction %>
-  </div>
-
-  <button type="submit" class="btn btn-outline-warning btn-block">新規登録</button>
-<% end %>

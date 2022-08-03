@@ -8,7 +8,7 @@ class Zoo < ApplicationRecord
 
   validates :rate, numericality: {
     less_than_or_equal_to: 5,
-    greater_than_or_equal_to: 1},presence: true
+    greater_than_or_equal_to: 0},presence: true
 
   def save_animal(sent_animals, animal_ids, user)
     current_animals = self.animals.pluck(:name) unless self.animals.nil?
@@ -32,7 +32,7 @@ class Zoo < ApplicationRecord
     end
   end
 
-  scope :star_count, -> {order(star: :desc)}
-  scope :more, -> {order(type: :desc)}
-  
+  scope :rate, -> {order(star: :desc)}
+  scope :more, -> {order(zoo_type: :desc)}
+
 end

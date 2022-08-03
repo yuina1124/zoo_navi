@@ -1,37 +1,45 @@
-animal#edit
+<div class="container">
+  <div class="row">
+    <div class="col-2"></div>
+    <div class="col-8">
+      <h2 class="m-5">動物編集</h2>
+      <%= form_with model: @animal, url:animal_path(@animal), method: :patch do |f| %>
 
-<%= form_with model: @animal, url:animal_path(@animal), method: :patch do |f| %>
+        <div class="field mr-5">
+          <%= f.label :画像 %>
+          <%= f.file_field :image, accept: "image/*" %>
+        </div>
 
-  <div class="field">
-    <%= f.label :image %>
-    <%= f.file_field :image, accept: "image/*" %>
+        <table>
+        <thead>
+          <tr>
+            <th></th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="m-5">
+            <td>名前</td>
+            <td><%= f.text_field :name %></td>
+          </tr>
+          <tr class="m-5">
+            <td>詳細</td>
+            <td><%= f.text_field :introduction %></td>
+          </tr>
+          <tr class="m-5">
+            <td>いる動物園</td>
+            <td>
+              <%= f.collection_check_boxes :zoo_ids, Zoo.where(user_id: current_user.id), :id, :name %>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="m-5">
+        <button type="submit" class="btn btn-outline-primary btn-block">編集</button>
+      </div>
+
+      <% end %>
+    </div>
+    <div class="col-2"></div>
   </div>
-
-  <table>
-  <thead>
-    <tr>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>名前</td>
-      <td><%= f.text_field :name %></td>
-    </tr>
-    <tr>
-      <td>詳細</td>
-      <td><%= f.text_field :introduction %></td>
-    </tr>
-    <tr>
-      <td>いる動物園</td>
-      <td>
-        <%= f.collection_check_boxes :zoo_ids, Zoo.where(user_id: current_user.id), :id, :name %>
-      </td>
-    </tr>
-  </tbody>
-</table>
-
-  <button type="submit" class="btn btn-outline-primary btn-block">編集</button>
-
-<% end %>
+</div>

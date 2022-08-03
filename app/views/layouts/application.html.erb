@@ -26,31 +26,41 @@
         </div>
 
           <div class="col-md-5">
-             <% if user_signed_in? %>
-            <li>
+            <% if user_signed_in? %>
+            <ul class="list-unstyled">
+              <li>
+              <i class="fa-solid fa-paw"></i>
               <%= link_to "動物園一覧", zoos_path %>
             </li>
             <li>
+              <i class="fa-solid fa-address-book"></i>
               <%= link_to "マイページ", user_path(current_user) %>
             </li>
             <li>
+              <i class="fa-solid fa-arrow-right-from-bracket"></i>
               <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
             </li>
           <% else %>
             <li>
+              <i class="fa-solid fa-paw"></i>
               <%= link_to "動物園一覧", zoos_path %>
             </li>
             <li>
+              <i class="fa-solid fa-address-card"></i>
               <%= link_to "ユーザ登録", new_user_registration_path %>
             </li>
             <li>
+              <i class="fa-solid fa-arrow-right-to-bracket"></i>
               <%= link_to "ログイン", new_user_session_path %>
             </li>
           <% end %>
+            </ul>
+
           </div>
         </div>
       </div>
     </div>
+  <script src="https://kit.fontawesome.com/6171b31f98.js" crossorigin="anonymous"></script>
   </head>
 
   <body>

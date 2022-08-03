@@ -1,37 +1,61 @@
-<h2>動物園登録</h2>
-<%= form_with model: @zoo, url: zoos_path(@zoo), method: :post do |f| %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-1"></div>
+    <div class="col-md-10">
+      <h2 class="m-5">動物園登録</h2>
 
-  <div class="field">
-    <%= f.label :image %>
-    <%= f.file_field :image, accept: "image/*" %>
+      <table class="table">
+        <thead>
+          <tr class="">
+            <th style="width:40%"></th>
+            <th style="width:60%"></th>
+          </tr>
+        </thead>
+        <%= form_with model: @zoo, url: zoos_path(@zoo), method: :post do |f| %>
+        <tbody>
+          <tr>
+            <td><%= f.label :画像 %></td>
+            <td><%= f.file_field :image, accept: "image/*" %></td>
+          </tr>
+          <tr>
+            <td><%= f.label :動物園名 %></td>
+            <td><%= f.text_field :name %></td>
+          </tr>
+          <tr>
+            <td><%= f.label :推しの動物 %></td>
+            <td><%= f.text_field :favorite %></td>
+          </tr>
+          <tr>
+            <td>
+              <%= f.label "いる動物(,で区切ると複数の動物が追加できます)" %>
+            </td>
+            <td>
+              <%= f.collection_check_boxes :animal_ids, Animal.where(user_id: current_user.id), :id, :name %>
+              <%= f.text_field :animals, value: @animal_list %>
+            </td>
+          </tr>
+          <tr>
+            <td><%= f.label :場所 %></td>
+            <td><%= f.text_field :address %></td>
+          </tr>
+          <tr>
+            <td>
+              <%= f.label :五段階評価 %>
+            </td>
+            <td>
+              <div id="rate">
+              <%= f.hidden_field :rate %>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <button type="submit" class="btn btn-outline-warning btn-block">新規登録</button>
+      <% end %>
+    </div>
+    <div class="col-md-1"></div>
   </div>
+</div>
 
-  <div class="field">
-    <%= f.label :動物園名 %>
-    <%= f.text_field :name %>
-  </div>
-
-  <div class="field">
-    <%= f.label :推しの動物 %>
-    <%= f.text_field :favorite %>
-  </div>
-
-  <div class="field">
-    <%= f.label "いる動物(,で区切ると複数の動物が追加できます)" %>
-    <%= f.collection_check_boxes :animal_ids, Animal.where(user_id: current_user.id), :id, :name %>
-    <%= f.text_field :animals, value: @animal_list %>
-  </div>
-
-  <div class="field">
-    <%= f.label :場所 %>
-    <%= f.text_field :address %>
-  </div>
-  <div id="rating-form">
-    <%= f.label :五段階評価 %>
-    <div id="rate">
-  </div>
-  <button type="submit" class="btn btn-outline-warning btn-block">新規登録</button>
-<% end %>
 
 <script>
   $('#rate').raty({

@@ -14,19 +14,3 @@
  *= require_self
  */
 
- .asi-image {
-   position: relative;
- }
-
- .asi(dog)-image {
-   width: 50px;
-   height: 50px;
-   background-color: orange;
-   display: flex;
-   justify-content: center;
-   align-items: center;
-   border-redius: 50%;
-   position: absolute;
-   top: 0;
-   left: 0;
- }

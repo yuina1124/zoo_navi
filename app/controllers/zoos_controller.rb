@@ -15,7 +15,7 @@ class ZoosController < ApplicationController
       # @zoo.save_animal_chackbox(params[:zoo][:animal_ids])
       redirect_to user_path(current_user.id)
     else
-      render new
+      redirect_to new_zoo_path
     end
   end
 
@@ -46,10 +46,10 @@ class ZoosController < ApplicationController
   def index
     @zoos = Zoo.all
     @animal_list = Animal.all
-    if params[:star_count]
-      @zoos = Zoo.star_count
+    if params[:rate]
+      @zoos = Zoo.all.order(rate: 'DESC')
     else params[:more]
-      @zoo = Zoo.more
+      @zoo = Zoo.all.order("zoo_type": 'DESC')
     end
   end
 

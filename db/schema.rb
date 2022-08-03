@@ -73,7 +73,7 @@ ActiveRecord::Schema.define(version: 2022_07_19_124348) do
   create_table "zoos", force: :cascade do |t|
     t.string "name", null: false
     t.string "favorite", null: false
-    t.string "zoo_type"
+    t.integer "zoo_type"
     t.string "address", null: false
     t.integer "user_id", null: false
     t.float "rate", default: 0.0, null: false

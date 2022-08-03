@@ -1,46 +1,64 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-1">
+    </div>
+    <div class="col-md-10">
+      <h2 class="m-5">動物園一覧</h2>
+        <table class="table">
+          <thead>
+            <tr class="table-warning">
+              <th>動物園名</th>
+              <th>人気動物</th>
+              <th>
+                何種類
+                <%= link_to zoos_path(zoo_type: "true") do %>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-sort-down-alt" viewBox="0 0 16 16">
+                    <path d="M3.5 3.5a.5.5 0 0 0-1 0v8.793l-1.146-1.147a.5.5 0 0 0-.708.708l2 1.999.007.007a.497.497 0 0 0 .7-.006l2-2a.5.5 0 0 0-.707-.708L3.5 12.293V3.5zm4 .5a.5.5 0 0 1 0-1h1a.5.5 0 0 1 0 1h-1zm0 3a.5.5 0 0 1 0-1h3a.5.5 0 0 1 0 1h-3zm0 3a.5.5 0 0 1 0-1h5a.5.5 0 0 1 0 1h-5zM7 12.5a.5.5 0 0 0 .5.5h7a.5.5 0 0 0 0-1h-7a.5.5 0 0 0-.5.5z"/>
+                  </svg>
+                <% end %>
+              </th>
+              <th>主な動物</th>
+              <th>
+                五段階評価
+                <%= link_to zoos_path(rate: "true") do %>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-sort-down-alt" viewBox="0 0 16 16">
+                    <path d="M3.5 3.5a.5.5 0 0 0-1 0v8.793l-1.146-1.147a.5.5 0 0 0-.708.708l2 1.999.007.007a.497.497 0 0 0 .7-.006l2-2a.5.5 0 0 0-.707-.708L3.5 12.293V3.5zm4 .5a.5.5 0 0 1 0-1h1a.5.5 0 0 1 0 1h-1zm0 3a.5.5 0 0 1 0-1h3a.5.5 0 0 1 0 1h-3zm0 3a.5.5 0 0 1 0-1h5a.5.5 0 0 1 0 1h-5zM7 12.5a.5.5 0 0 0 .5.5h7a.5.5 0 0 0 0-1h-7a.5.5 0 0 0-.5.5z"/>
+                  </svg>
+                <% end %>
+              </th>
+              <th>投稿者</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @zoos.each do |zoo| %>
+            <tr>
+              <td><%= zoo.name %></td>
+              <td><%= zoo.favorite %></td>
+              <td><%= zoo.animals.count %></td>
+              <td>
+                <% zoo.animals.each do |animal| %>
+                  <%= animal.name %>
+                <% end %>
+              </td>
+              <td class="evaluations" data-score="<%= zoo.rate %>"></td>
+              <td><%= zoo.user.name %></td>
+              <td>
+                <%= link_to zoo_path(zoo) do %>
+                  もっと詳しく
+                <% end %>
+              </td>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+      <div class="col-md-1">
+      </div>
+  </div>
+</div>
 
-<h2>動物園一覧</h2>
 
-<table class="table">
-  <thead class="thead-dark">
-    <tr>
-      <th>動物園名</th>
-      <th>人気動物</th>
-      <th>
-        何種類
-        <%= link_to '種類の多い順', zoos_path(more: "true") %>
-      </th>
-      <th>主な動物</th>
-      <th>
-        五段階評価
-        <%= link_to '評価の高い順', zoos_path(star_count: "true") %>
-      </th>
-      <th>投稿者</th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @zoos.each do |zoo| %>
-    <tr>
-      <td><%= zoo.name %></td>
-      <td><%= zoo.favorite %></td>
-      <td><%= zoo.animals.count %></td>
-      <td>
-        <% zoo.animals.each do |animal| %>
-          <%= animal.name %>
-        <% end %>
-      </td>
-      <td class="evaluations" data-score="<%= zoo.rate %>"></td>
-      <td><%= zoo.user.name %></td>
-      <td>
-        <%= link_to zoo_path(zoo) do %>
-          もっと詳しく
-        <% end %>
-      </td>
-    </tr>
-    <% end %>
-  </tbody>
-</table>
 
 <script>
   $('.evaluations').raty({
