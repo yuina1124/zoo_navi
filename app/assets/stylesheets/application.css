@@ -14,3 +14,28 @@
  *= require_self
  */
 
+.size-100px{
+  font-size: 150px;
+  display: inline-block;
+  transform: scaleX(-1);
+}
+.size-90px{
+  font-size: 105px;
+  display: inline-block;
+  transform: scaleX(-1);
+}
+.size-80px{
+  font-size: 80px;
+  display: inline-block;
+  transform: scaleX(-1);
+}
+.size-70px{
+  font-size: 60px;
+  display: inline-block;
+  transform: scaleX(-1);
+}
+.size-60px{
+  font-size: 30px;
+  display: inline-block;
+  transform: scaleX(-1);
+}
