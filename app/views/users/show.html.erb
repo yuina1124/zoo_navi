@@ -3,90 +3,114 @@
     <div class="col-md-2"></div>
     <div class="col-md-8">
       <h2 class="m-5">
-        <%= @user.name %>さんの図鑑
+        <%= @user.name %>さんのマイページ
       </h2>
+
+      <div>
+          <ul class="nav nav-tabs" role="tablist">
+            <li class="active" role="presentation">
+              <a aria-controls="tab_a" data-toggle="tab" href="#tab_a" role="tab">動物園図鑑</a>
+          　</li>
+            <li class="active" role="presentation">
+              <a aria-controls="tab_b" data-toggle="tab" href="#tab_b" role="tab">動物図鑑</a>
+          　</li>
+          </ul>
+          <div class="tab-content">
+            <div class="tab-pane active" id="tab_a" role="tabpanel">
+              <p>
+                <% if @zoos.present? %>
+                <table class="table table-striped mb-5">
+                  <thead>
+                    <tr>
+                      <th style="width: 20%">動物園名</th>
+                      <th style="width: 15%">推し動物</th>
+                      <th style="width: 20%">訪れた日付</th>
+                      <th style="width: 45%">五段階評価</th>
+                      <th style="width: 5%"></th>
+                      <th style="width: 5%"></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <% @zoos.each do |zoo| %>
+                      <tr>
+                        <td><%= zoo.name %></td>
+                        <td><%= zoo.favorite %></td>
+                        <td><%= zoo.created_at.strftime('%Y/%m/%d') %></td>
+                        <td class="evaluations" data-score="<%= zoo.rate %>"></td>
+                        <td>
+                          <%= link_to zoo_path(zoo), class: "btn btn-outline-secondary" do %>
+                            詳細
+                          <% end %>
+                        </td>
+                        <td>
+                          <%= link_to edit_zoo_path(zoo), class: "btn btn-outline-info" do %>
+                            <i class="fa-solid fa-pencil"></i>
+                            編集
+                          <% end %>
+                        </td>
+                      </tr>
+                    <% end %>
+                  </tbody>
+                </table>
+                <% end %>
+              </p>
+            </div>
+            <div class="tab-pane active" id="tab_b" role="tabpanel">
+              <p>
+                <% if @animals.present? %>
+                <table class="table mb-5">
+                  <thead>
+                    <tr>
+                      <th>名前</th>
+                      <th>いる動物園</th>
+                      <th></th>
+                      <th></th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <% @animals.each do |animal| %>
+                      <tr>
+                        <td><%= animal.name %></td>
+                        <td>
+                        <% animal.zoos.each do |zoo| %>
+                          <%= zoo.name %>
+                        <% end %>
+                        </td>
+                        <td>
+                          <%= link_to animal_path(animal),class: "btn btn-outline-secondary" do %>
+                            詳細
+                          <% end %>
+                        </td>
+                        <td>
+
+                          <%= link_to edit_animal_path(animal), class: "btn btn-outline-info" do %>
+                            <i class="fa-solid fa-pencil"></i>
+                            編集
+                          <% end %>
+                        </td>
+                      </tr>
+                    <% end %>
+                  </tbody>
+                </table>
+                <% end %>
+              </p>
+            </div>
+          </div>
+        </div>
+
 
         <%= link_to new_zoo_path, class: "btn btn-outline-warning" do %>
           動物園を登録する
         <% end %>
       </p>
 
-      <% if @zoos.present? %>
-      <table class="table table-striped mb-5">
-        <thead>
-          <tr>
-            <th style="width: 20%">動物園名</th>
-            <th style="width: 15%">推し動物</th>
-            <th style="width: 20%">訪れた日付</th>
-            <th style="width: 45%">五段階評価</th>
-            <th style="width: 5%"></th>
-            <th style="width: 5%"></th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @zoos.each do |zoo| %>
-            <tr>
-              <td><%= zoo.name %></td>
-              <td><%= zoo.favorite %></td>
-              <td><%= zoo.created_at.strftime('%Y/%m/%d') %></td>
-              <td class="evaluations" data-score="<%= zoo.rate %>"></td>
-              <td>
-                <%= link_to zoo_path(zoo), class: "btn btn-outline-secondary" do %>
-                  詳細
-                <% end %>
-              </td>
-              <td>
-                <%= link_to edit_zoo_path(zoo), class: "btn btn-outline-info" do %>
-                  <i class="fa-solid fa-pencil"></i>
-                  編集
-                <% end %>
-              </td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
-      <% end %>
+
 
       <%= link_to new_animal_path, class: "btn btn-outline-warning mb-5" do %>
         動物を登録する
       <% end %>
 
-      <% if @animals.present? %>
-      <table class="table mb-5">
-        <thead>
-          <tr>
-            <th>名前</th>
-            <th>いる動物園</th>
-            <th></th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @animals.each do |animal| %>
-            <tr>
-              <td><%= animal.name %></td>
-              <td>
-              <% animal.zoos.each do |zoo| %>
-                <%= zoo.name %>
-              <% end %>
-              </td>
-              <td>
-                <%= link_to animal_path(animal),class: "btn btn-outline-secondary" do %>
-                  詳細
-                <% end %>
-              </td>
-              <td>
 
-                <%= link_to edit_animal_path(animal), class: "btn btn-outline-info" do %>
-                  <i class="fa-solid fa-pencil"></i>
-                  編集
-                <% end %>
-              </td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
-      <% end %>
 
       <div class="form-inline">
         <h3 class=" mx-5">ユーザ情報</h3>
@@ -135,3 +159,4 @@
     starOff: "<%= asset_path('siro.png') %>",
   });
 </script>
+
