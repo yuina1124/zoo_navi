@@ -3,10 +3,14 @@
     <div class="col-md-1">
     </div>
     <div class="col-md-10">
-      <h2 class="m-5">動物園一覧</h2>
+      <h2 class="m-5">
+        <div class="orange">
+          動物園一覧
+        </div>
+      </h2>
         <table class="table">
           <thead>
-            <tr class="table-warning">
+            <tr class="table headline">
               <th>動物園名</th>
               <th>人気動物</th>
               <th>
@@ -30,7 +34,8 @@
               <th></th>
             </tr>
           </thead>
-          <tbody>
+          <div class="whitesmoke">
+            <tbody>
             <% @zoos.each do |zoo| %>
             <tr>
               <td><%= zoo.name %></td>
@@ -51,6 +56,8 @@
             </tr>
             <% end %>
           </tbody>
+          </div>
+
         </table>
       </div>
       <div class="col-md-1">

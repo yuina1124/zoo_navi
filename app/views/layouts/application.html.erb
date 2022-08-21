@@ -15,7 +15,7 @@
 
 
 
-    <div class="container-fluid bg-warning">
+    <div class="container-fluid header">
       <div class="row">
 
         <div class="col-md-2">
@@ -25,33 +25,33 @@
         <div class="col-md-5">
         </div>
 
-          <div class="col-md-5">
+          <div class="col-md-5 mt-5">
             <% if user_signed_in? %>
-            <ul class="list-unstyled">
+            <ul class="nav pull-right nav-pills">
               <li>
-              <i class="fa-solid fa-paw"></i>
-              <%= link_to "動物園一覧", zoos_path %>
+              <i class="fa-solid fa-paw headermozi"></i>
+              <%= link_to "動物園一覧", zoos_path(class: "headermozi") %>
             </li>
             <li>
-              <i class="fa-solid fa-address-book"></i>
-              <%= link_to "マイページ", user_path(current_user) %>
+              <i class="fa-solid fa-address-book headermozi"></i>
+              <%= link_to "マイページ  ", user_path(current_user, class: "headermozi") %>
             </li>
             <li>
-              <i class="fa-solid fa-arrow-right-from-bracket"></i>
-              <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+              <i class="fa-solid fa-arrow-right-from-bracket headermozi"></i>
+              <%= link_to "ログアウト  ", destroy_user_session_path(class: "headermozi"), method: :delete %>
             </li>
           <% else %>
             <li>
-              <i class="fa-solid fa-paw"></i>
-              <%= link_to "動物園一覧", zoos_path %>
+              <i class="fa-solid fa-paw headermozi"></i>
+              <%= link_to "動物園一覧  ", zoos_path(class: "headermozi") %>
             </li>
             <li>
-              <i class="fa-solid fa-address-card"></i>
-              <%= link_to "ユーザ登録", new_user_registration_path %>
+              <i class="fa-solid fa-address-card headermozi"></i>
+              <%= link_to "ユーザ登録  ", new_user_registration_path(class: "headermozi") %>
             </li>
             <li>
-              <i class="fa-solid fa-arrow-right-to-bracket"></i>
-              <%= link_to "ログイン", new_user_session_path %>
+              <i class="fa-solid fa-arrow-right-to-bracket headermozi"></i>
+              <%= link_to "ログイン  ", new_user_session_path(class: "headermozi") %>
             </li>
           <% end %>
             </ul>
@@ -64,18 +64,21 @@
   </head>
 
   <body>
-    <%= yield %>
+    <div class="body">
+      <%= yield %>
+    </div>
   </body>
 
   <footer>
-    <div class="container-fluid bg-warning">
+    <div class="container-fluid footer">
       <div class="row">
         <div class="col-md-10">
-          <i class="fa-solid fa-hippo size-100px"></i>
-          <i class="fa-solid fa-horse size-90px"></i>
-          <i class="fa-solid fa-otter size-80px"></i>
-          <i class="fa-solid fa-cat size-70px"></i>
-          <i class="fa-solid fa-crow size-60px"></i>        </div>
+          <i class="fa-solid fa-hippo hippo"></i>
+          <i class="fa-solid fa-horse horse"></i>
+          <i class="fa-solid fa-otter otter"></i>
+          <i class="fa-solid fa-cat cat"></i>
+          <i class="fa-solid fa-crow crow"></i>
+        </div>
         <div class="col-md-2">ZOONAVI</div>
       </div>
     </div>

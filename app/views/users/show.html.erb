@@ -2,22 +2,17 @@
   <div class="row">
     <div class="col-md-2"></div>
     <div class="col-md-8">
-      <h2 class="m-5">
+      <h2 class="m-5 orange">
         <%= @user.name %>さんのマイページ
       </h2>
 
-      <div>
-          <ul class="nav nav-tabs" role="tablist">
-            <li class="active" role="presentation">
-              <a aria-controls="tab_a" data-toggle="tab" href="#tab_a" role="tab">動物園図鑑</a>
-          　</li>
-            <li class="active" role="presentation">
-              <a aria-controls="tab_b" data-toggle="tab" href="#tab_b" role="tab">動物図鑑</a>
-          　</li>
+      <div class="wrapper">
+          <ul class="tab headline">
+            <li><a href="#zoo">訪れた動物園</a></li>
+            <li><a href="#animal">動物図鑑</a></li>
           </ul>
-          <div class="tab-content">
-            <div class="tab-pane active" id="tab_a" role="tabpanel">
-              <p>
+          <div id="zoo" class="area">
+             <p>
                 <% if @zoos.present? %>
                 <table class="table table-striped mb-5">
                   <thead>
@@ -38,7 +33,7 @@
                         <td><%= zoo.created_at.strftime('%Y/%m/%d') %></td>
                         <td class="evaluations" data-score="<%= zoo.rate %>"></td>
                         <td>
-                          <%= link_to zoo_path(zoo), class: "btn btn-outline-secondary" do %>
+                          <%= link_to zoo_path(zoo), class: "btn orange" do %>
                             詳細
                           <% end %>
                         </td>
@@ -55,8 +50,8 @@
                 <% end %>
               </p>
             </div>
-            <div class="tab-pane active" id="tab_b" role="tabpanel">
-              <p>
+          <div id="animal" class="area">
+               <p>
                 <% if @animals.present? %>
                 <table class="table mb-5">
                   <thead>
@@ -95,8 +90,7 @@
                 <% end %>
               </p>
             </div>
-          </div>
-        </div>
+      </div>
 
 
         <%= link_to new_zoo_path, class: "btn btn-outline-warning" do %>
@@ -111,10 +105,10 @@
       <% end %>
 
 
-
-      <div class="form-inline">
-        <h3 class=" mx-5">ユーザ情報</h3>
-        <h4>
+    <div class="background">
+      <div class="form-inline headline">
+        <h3 class=" mx-5">| ユーザ情報</h3>
+        <h4 class="mt-2">
           <%= link_to edit_user_path(@user), class: "btn btn-outline-info" do %>
             <i class="fa-solid fa-pencil"></i>
             編集する
@@ -123,7 +117,7 @@
       </div>
 
 
-        <table class="table mx-5">
+        <table class="table">
           <thead>
             <tr>
               <th></th>
@@ -142,9 +136,12 @@
           </tbody>
         </table>
       </div>
+
+    </div>
     <div class="col-md-2"></div>
   </div>
 </div>
+
 
 
 
@@ -157,6 +154,40 @@
     },
     starOn: "<%= asset_path('lion.emozi.png') %>",
     starOff: "<%= asset_path('siro.png') %>",
+  });
+
+  //任意のタブにURLからリンクするための設定
+  function GethashID (hashIDName){
+    if(hashIDName){
+      //タブ設定
+      $('.tab li').find('a').each(function() { //タブ内のaタグ全てを取得
+        var idName = $(this).attr('href'); //タブ内のaタグのリンク名（例）#lunchの値を取得
+        if(idName == hashIDName){ //リンク元の指定されたURLのハッシュタグ（例）http://example.com/#lunch←この#の値とタブ内のリンク名（例）#lunchが同じかをチェック
+          var parentElm = $(this).parent(); //タブ内のaタグの親要素（li）を取得
+          $('.tab li').removeClass("active"); //タブ内のliについているactiveクラスを取り除き
+          $(parentElm).addClass("active"); //リンク元の指定されたURLのハッシュタグとタブ内のリンク名が同じであれば、liにactiveクラスを追加
+          //表示させるエリア設定
+          $(".area").removeClass("is-active"); //もともとついているis-activeクラスを取り除き
+          $(hashIDName).addClass("is-active"); //表示させたいエリアのタブリンク名をクリックしたら、表示エリアにis-activeクラスを追加
+        }
+      });
+    }
+  }
+
+  //タブをクリックしたら
+  $('.tab a').on('click', function() {
+    var idName = $(this).attr('href'); //タブ内のリンク名を取得
+    GethashID (idName);//設定したタブの読み込みと
+    return false;//aタグを無効にする
+  });
+
+
+  // 上記の動きをページが読み込まれたらすぐに動かす
+  $(window).on('load', function () {
+      $('.tab li:first-of-type').addClass("active"); //最初のliにactiveクラスを追加
+      $('.area:first-of-type').addClass("is-active"); //最初の.areaにis-activeクラスを追加
+    var hashName = location.hash; //リンク元の指定されたURLのハッシュタグを取得
+    GethashID (hashName);//設定したタブの読み込み
   });
 </script>
 
