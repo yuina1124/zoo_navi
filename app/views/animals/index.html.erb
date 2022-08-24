@@ -11,40 +11,49 @@
     <div class="col-md-1">
     </div>
     <div class="col-md-10">
-      <h2 class="mt-5 mb-3">お気に入りの動物から動物園を探そう！</h2>
+      <div class="background">
+        <h2 class="mt-5 mb-3 orange">お気に入りの動物から動物園を探そう！</h2>
         <%= search_form_for @q do |f| %>
           <%= f.label :動物名入力%>
           <%= f.search_field :name_cont %>
-          <button type="submit" class="btn btn-outline-primary ">
+          <button type="submit" class="btn btn-outline-warning">
             <i class="fa-solid fa-magnifying-glass"></i>
             検索
           </button>
         <% end %>
+      </div>
 
 
-      <h2 class="mt-5 mb-4"><i class="fa-solid fa-magnifying-glass"></i>検索結果</h2>
+
+      <h2 class="mt-5 mb-4">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        検索結果
+      </h2>
       <table class="table">
         <thead>
-          <tr class="table-warning">
+          <tr class="headline">
             <th>動物名</th>
             <th>いる動物園</th>
           </tr>
         </thead>
-        <tbody class="mb-5">
-          <% @animals.each do |animal| %>
-              <tr>
-                <td><%= animal.name %></td>
-                <td>
-                  <% animal.zoos.each do |zoo| %>
-                    <%= link_to zoo_path(zoo) do %>
-                      <%= zoo.name %><br>
+        <tbody class="mb-5 background ">
+          <% unless @animals.blank? %>
+            <% @animals.each do |animal| %>
+                <tr>
+                  <td><%= animal.name %></td>
+                  <td>
+                    <% animal.zoos.each do |zoo| %>
+                      <%= link_to zoo_path(zoo) do %>
+                        <%= zoo.name %><br>
+                      <% end %>
                     <% end %>
-                  <% end %>
-                </td>
-              </tr>
-            <% if @animals.size == 0 %>
-              登録されていません
+                  </td>
+                </tr>
             <% end %>
+          <% else %>
+          <h4 class="orange">
+            登録されていません
+          </h4>
           <% end %>
         </tbody>
       </table>

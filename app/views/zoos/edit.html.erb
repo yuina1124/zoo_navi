@@ -1,12 +1,9 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-2"></div>
-    <div class="col-md-2"></div>
-    <div class="col-md-2"></div>
-  </div>
-</div>
-
-<table class="table">
+    <div class="col-md-1"></div>
+    <div class="col-md-10">
+      <h2 class="mt-5 headline">動物園編集</h2>
+      <table class="table background">
         <thead>
           <tr>
             <th></th>
@@ -14,50 +11,53 @@
           </tr>
         </thead>
         <tbody>
+          <%= form_with model: @zoo, url: zoo_path(@zoo), method: :patch do |f| %>
           <tr>
-            <td></td>
+            <td><%= f.label :画像 %></td>
+            <td><%= f.file_field :image, accept: "image/*" %></td>
+          </tr>
+          <tr>
+            <td><%= f.label :動物園名 %></td>
+            <td><%= f.text_field :name %></td>
+          </tr>
+          <tr>
+            <td><%= f.label :推しの動物 %></td>
+            <td><%= f.text_field :favorite %></td>
+          </tr>
+          <tr>
+            <td><%= f.label "いる動物(,で区切ると複数の動物が追加できます)" %></td>
+            <td>
+              <%= f.collection_check_boxes :animal_ids, Animal.where(user_id: current_user.id), :id, :name %>
+              <%= f.text_field :animals, value: '' %>
+            </td>
+          </tr>
+          <tr>
+            <td><%= f.label :場所 %></td>
+            <td><%= f.text_field :address %></td>
+          </tr>
+          <tr>
+            <td><%= f.label :五段階評価 %></td>
+            <td><div id="rate"></td>
           </tr>
           <tr>
             <td></td>
+            <td></td>
           </tr>
+
         </tbody>
       </table>
+      <button type="submit" class="btn btn-outline-warning btn-block mb-5">編集</button>
+      <% end %>
 
-<%= form_with model: @zoo, url: zoo_path(@zoo), method: :patch do |f| %>
 
-  <div class="field">
-    <%= f.label :image %>
-    <%= f.file_field :image, accept: "image/*" %>
+
+
+    </div>
+    <div class="col-md-1"></div>
   </div>
+</div>
 
-  <div class="field">
-    <%= f.label :動物園名 %>
-    <%= f.text_field :name %>
-  </div>
 
-  <div class="field">
-    <%= f.label :推しの動物 %>
-    <%= f.text_field :favorite %>
-  </div>
-
-  <div class="field">
-    <%= f.label "いる動物(,で区切ると複数の動物が追加できます)" %>
-    <%= f.collection_check_boxes :animal_ids, Animal.where(user_id: current_user.id), :id, :name %>
-    <%= f.text_field :animals, value: '' %>
-  </div>
-
-  <div class="field">
-    <%= f.label :場所 %>
-    <%= f.text_field :address %>
-  </div>
-  <div class="field">
-    <%= f.label :五段階評価 %>
-    <div id="rate">
-  </div>
-
-  <button type="submit" class="btn btn-outline-primary btn-block">編集</button>
-
-<% end %>
 
 <script>
   $('#rate').raty({

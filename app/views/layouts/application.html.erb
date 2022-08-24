@@ -40,20 +40,22 @@
               <i class="fa-solid fa-arrow-right-from-bracket headermozi"></i>
               <%= link_to "ログアウト  ", destroy_user_session_path(class: "headermozi"), method: :delete %>
             </li>
-          <% else %>
-            <li>
+            <% else %>
+            <ul class="nav pull-right nav-pills">
+            <li style="list-style: none;">
               <i class="fa-solid fa-paw headermozi"></i>
               <%= link_to "動物園一覧  ", zoos_path(class: "headermozi") %>
             </li>
-            <li>
+            <li style="list-style: none;">
               <i class="fa-solid fa-address-card headermozi"></i>
               <%= link_to "ユーザ登録  ", new_user_registration_path(class: "headermozi") %>
             </li>
-            <li>
+            <li style="list-style: none;">
               <i class="fa-solid fa-arrow-right-to-bracket headermozi"></i>
               <%= link_to "ログイン  ", new_user_session_path(class: "headermozi") %>
             </li>
-          <% end %>
+            </ul>
+            <% end %>
             </ul>
 
           </div>

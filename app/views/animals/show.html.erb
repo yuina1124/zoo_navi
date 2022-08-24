@@ -1,32 +1,44 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-4">
+      <% if @animal.image.attached? %>
+        <%= image_tag @animal.image, size: "200x200" %>
+      <% else %>
+        <%= image_tag 'noimage', size: "200x200" %>
+      <% end %>
+    </div>
+    <div class="col-md-7">
+      <h2 class="mt-5 headline"><%= @animal.name %></h2>
+      <table class="table background">
+        <thead>
+          <tr>
+            <th></th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>詳細</td>
+            <td><%= @animal.introduction %></td>
+          </tr>
+          <tr>
+            <td>いる動物園</td>
+            <td>
+              <% @animal.zoos.each do |zoo| %>
+                <%= zoo.name %>
+              <% end %>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-md-1">
+    </div>
+  </div>
+</div>
 
-<h2><%= @animal.name %></h2>
 
-<% if @animal.image.attached? %>
-  <%= image_tag @animal.image, size: "200x200" %>
-<% else %>
-  <%= image_tag 'noimage', size: "200x200" %>
-<% end %>
 
-<table>
-  <thead>
-    <tr>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>詳細</td>
-      <td><%= @animal.introduction %></td>
-    </tr>
-    <tr>
-      <td>いる動物園</td>
-      <td>
-        <% @animal.zoos.each do |zoo| %>
-          <%= zoo.name %><br>
-        <% end %>
-      </td>
-    </tr>
-  </tbody>
-</table>
+
+
 

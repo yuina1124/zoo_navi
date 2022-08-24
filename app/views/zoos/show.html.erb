@@ -1,6 +1,6 @@
 <div class="container-fluid">
   <div class="row">
-    <div class="col-md-2">
+    <div class="col-md-4">
       <div class="m-5">
         <% if @zoo.image.attached? %>
           <%= image_tag @zoo.image, size: "200x200" %>
@@ -9,10 +9,10 @@
         <% end %>
       </div>
     </div>
-    <div class="col-md-10">
-      <h2 class="m-5"><%= @zoo.name %></h2>
+    <div class="col-md-7">
+      <h2 class="mt-5 headline"><%= @zoo.name %></h2>
 
-        <table class="table">
+        <table class="table background">
           <thead>
             <tr>
               <th></th>
@@ -51,7 +51,7 @@
           </tbody>
         </table>
       </div>
-    <div class="col-md-2"></div>
+    <div class="col-md-1"></div>
   </div>
 </div>
 

@@ -1,16 +1,11 @@
 <div class="container">
   <div class="row">
-    <div class="col-2"></div>
-    <div class="col-8">
-      <h2 class="m-5">動物編集</h2>
+    <div class="col-1"></div>
+    <div class="col-10">
+      <h2 class="mt-5 headline">動物編集</h2>
       <%= form_with model: @animal, url:animal_path(@animal), method: :patch do |f| %>
 
-        <div class="field mr-5">
-          <%= f.label :画像 %>
-          <%= f.file_field :image, accept: "image/*" %>
-        </div>
-
-        <table>
+        <table class="table background">
         <thead>
           <tr>
             <th></th>
@@ -18,6 +13,10 @@
           </tr>
         </thead>
         <tbody>
+          <tr>
+            <td><%= f.label :画像 %></td>
+            <td><%= f.file_field :image, accept: "image/*" %></td>
+          </tr>
           <tr class="m-5">
             <td>名前</td>
             <td><%= f.text_field :name %></td>
@@ -34,12 +33,12 @@
           </tr>
         </tbody>
       </table>
-      <div class="m-5">
-        <button type="submit" class="btn btn-outline-primary btn-block">編集</button>
+      <div class="mb-5">
+        <button type="submit" class="btn btn-outline-warning btn-block">編集</button>
       </div>
 
       <% end %>
     </div>
-    <div class="col-2"></div>
+    <div class="col-1"></div>
   </div>
 </div>

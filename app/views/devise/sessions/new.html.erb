@@ -2,9 +2,9 @@
   <div class="row">
     <div class="col-md-2"></div>
     <div class="col-md-8">
-      <h2 class="m-5">ログイン</h2>
+      <h2 class="mt-5 headline">ログイン</h2>
 
-      <table class="table">
+      <table class="table background">
         <thead>
           <tr>
             <th></th>
@@ -31,11 +31,15 @@
               <% end %>
             </td>
           </tr>
+          <tr>
+            <td>
+              <button type="submit" class="btn">ログイン</button>
+            </td>
+          </tr>
         </tbody>
-
-      </table>
-        <button type="submit" class="btn btn-outline-warning">ログイン</button>
         <% end %>
+      </table>
+
 
       <%= render "devise/shared/links" %>
     </div>

@@ -1,10 +1,19 @@
 <div class="container-fluid">
   <div class="row">
-    <div class="col-md-2"></div>
-    <div class="col-md-8">
+    <div class="col-md-1"></div>
+    <div class="col-md-10">
       <h2 class="m-5 orange">
         <%= @user.name %>さんのマイページ
       </h2>
+
+      <%= link_to new_zoo_path, class: "btn btn-outline-warning" do %>
+          動物園を登録する
+      <% end %>
+
+      <%= link_to new_animal_path, class: "btn btn-outline-warning " do %>
+        動物を登録する
+      <% end %>
+
 
       <div class="wrapper">
           <ul class="tab headline">
@@ -13,6 +22,8 @@
           </ul>
           <div id="zoo" class="area">
              <p>
+               <p>訪れた動物園</p>
+               <p><%= @zoos.count %></p>
                 <% if @zoos.present? %>
                 <table class="table table-striped mb-5">
                   <thead>
@@ -52,6 +63,8 @@
             </div>
           <div id="animal" class="area">
                <p>
+                <p>登録した動物</p>
+                <p><%= @animals.count %></p>
                 <% if @animals.present? %>
                 <table class="table mb-5">
                   <thead>
@@ -93,19 +106,14 @@
       </div>
 
 
-        <%= link_to new_zoo_path, class: "btn btn-outline-warning" do %>
-          動物園を登録する
-        <% end %>
+
       </p>
 
 
 
-      <%= link_to new_animal_path, class: "btn btn-outline-warning mb-5" do %>
-        動物を登録する
-      <% end %>
 
 
-    <div class="background">
+    <div class="mt-5 background">
       <div class="form-inline headline">
         <h3 class=" mx-5">| ユーザ情報</h3>
         <h4 class="mt-2">
@@ -138,7 +146,7 @@
       </div>
 
     </div>
-    <div class="col-md-2"></div>
+    <div class="col-md-1"></div>
   </div>
 </div>
 
