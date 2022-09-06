@@ -6,9 +6,6 @@ class Zoo < ApplicationRecord
 
   has_one_attached :image
 
-  validates :rate, numericality: {
-    less_than_or_equal_to: 5,
-    greater_than_or_equal_to: 0},presence: true
 
   def save_animal(sent_animals, animal_ids, user)
     current_animals = self.animals.pluck(:name) unless self.animals.nil?

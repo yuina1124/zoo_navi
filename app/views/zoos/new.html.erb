@@ -43,8 +43,8 @@
               <%= f.label :五段階評価 %>
             </td>
             <td>
-              <div id="rate">
-              <%= f.hidden_field :rate %>
+              <div class="field" id="star">
+              <%= f.hidden_field :rate, id: :review_star %>
             </td>
           </tr>
         </tbody>
@@ -58,9 +58,9 @@
 
 
 <script>
-  $('#rate').raty({
+  $('#star').raty({
     starOn: "<%= asset_path('lion.emozi.png') %>",
     starOff: "<%= asset_path('siro.png') %>",
     scoreName: 'zoo[rate]'
-  })
+  });
 </script>

@@ -42,7 +42,18 @@
                         <td><%= zoo.name %></td>
                         <td><%= zoo.favorite %></td>
                         <td><%= zoo.created_at.strftime('%Y/%m/%d') %></td>
-                        <td class="evaluations" data-score="<%= zoo.rate %>"></td>
+                        <td class="relative-zoo-rate">
+                          <span id="star-rate-<%= zoo.rate %>"></span>
+                          <script>
+                            $('#star-rate-<%= zoo.id %>').raty({
+                              readOnly: true,
+                              starOn: "<%= asset_path('lion.emozi.png') %>",
+                              starOff: "<%= asset_path('siro.png') %>",
+                              score: <%= zoo.rate %>,
+                            });
+                          </script>
+                          <%= zoo.rate %>
+                        </td>
                         <td>
                           <%= link_to zoo_path(zoo), class: "btn orange" do %>
                             詳細
@@ -155,14 +166,7 @@
 
 
 <script>
-  $('.evaluations').raty({
-    readOnly: true,
-    score: function() {
-      return $(this).attr('data-score');
-    },
-    starOn: "<%= asset_path('lion.emozi.png') %>",
-    starOff: "<%= asset_path('siro.png') %>",
-  });
+
 
   //任意のタブにURLからリンクするための設定
   function GethashID (hashIDName){
