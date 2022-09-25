@@ -4,6 +4,8 @@
     <div class="col-md-10">
       <h2 class="mt-5 headline">動物園登録</h2>
 
+      <%= form_with model: @zoo, url: zoos_path(@zoo), method: :post do |f| %>
+
       <table class="table background">
         <thead>
           <tr class="">
@@ -11,7 +13,6 @@
             <th style="width:60%"></th>
           </tr>
         </thead>
-        <%= form_with model: @zoo, url: zoos_path(@zoo), method: :post do |f| %>
         <tbody>
           <tr>
             <td><%= f.label :画像 %></td>
@@ -49,7 +50,7 @@
           </tr>
         </tbody>
       </table>
-      <button type="submit" class="btn btn-outline-warning mb-5">新規登録</button>
+      <button type="submit" class="btn btn-outline-warning mb-5">新規投稿</button>
       <% end %>
     </div>
     <div class="col-md-1"></div>

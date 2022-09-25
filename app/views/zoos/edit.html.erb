@@ -3,6 +3,8 @@
     <div class="col-md-1"></div>
     <div class="col-md-10">
       <h2 class="mt-5 headline">動物園編集</h2>
+      <%= form_with model: @zoo, url: zoo_path(@zoo), method: :patch do |f| %>
+
       <table class="table background">
         <thead>
           <tr>
@@ -11,7 +13,6 @@
           </tr>
         </thead>
         <tbody>
-          <%= form_with model: @zoo, url: zoo_path(@zoo), method: :patch do |f| %>
           <tr>
             <td><%= f.label :画像 %></td>
             <td><%= f.file_field :image, accept: "image/*" %></td>
