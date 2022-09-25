@@ -38,7 +38,7 @@
           </tr>
           <tr>
             <td><%= f.label :五段階評価 %></td>
-            <td><div id="rate"></td>
+            <td><div id="rate" date-score="<%= @zoo.rate %>"></td>
           </tr>
           <tr>
             <td></td>
@@ -64,6 +64,9 @@
   $('#rate').raty({
     starOn: "<%= asset_path('lion.emozi.png') %>",
     starOff: "<%= asset_path('siro.png') %>",
-    scoreName: 'zoo[rate]'
+    scoreName: 'zoo[rate]',
+    score: function() {
+      return $(this).attr('date-score');
+    },
   })
 </script>

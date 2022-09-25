@@ -48,9 +48,8 @@ class ZoosController < ApplicationController
     @animal_list = Animal.all
     if params[:rate]
       @zoos = Zoo.all.order(rate: 'DESC')
-    else params[:more]
-      @zoo = Zoo.all.order("zoo_type": 'DESC')
-    end
+    elsif params[:zoo_type]
+      @zoos = Zoo.select('zoos.*', 'count(zoo_animals.id) AS count').left_joins(:zoo_animals).group('zoos.id').order('count desc')    end
   end
 
   private
